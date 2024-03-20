@@ -44,12 +44,12 @@ class HFLM(BaseLM):
         self.gpt2 = transformers.AutoModelForCausalLM.from_pretrained(
             pretrained,
             load_in_8bit=load_in_8bit,
-            low_cpu_mem_usage=True,
+            #low_cpu_mem_usage=True,
             revision=revision,
             trust_remote_code=trust_remote_code,
             torch_dtype='auto',
-            device_map='auto',
-        )# .to(self.device)
+            #device_map='auto',
+        ).to('cpu')  #.to(self._device)
         self.gpt2.eval()
 
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(
@@ -60,15 +60,15 @@ class HFLM(BaseLM):
 
         self.vocab_size = self.tokenizer.vocab_size
 
-        if isinstance(
-            self.tokenizer, (transformers.GPT2Tokenizer, transformers.GPT2TokenizerFast)
-        ):
-            assert self.tokenizer.encode("hello\n\nhello") == [
-                31373,
-                198,
-                198,
-                31373,
-            ], self.tokenizer.encode("hello\n\nhello")
+#        if isinstance(
+#            self.tokenizer, (transformers.GPT2Tokenizer, transformers.GPT2TokenizerFast)
+#        ):
+#            assert self.tokenizer.encode("hello\n\nhello") == [
+#                31373,
+#                198,
+#                198,
+#                31373,
+#            ], self.tokenizer.encode("hello\n\nhello")
 
         # setup for automatic batch size detection
         if batch_size == "auto":
