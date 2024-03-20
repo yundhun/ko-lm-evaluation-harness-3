@@ -49,7 +49,7 @@ class HFLM(BaseLM):
             trust_remote_code=trust_remote_code,
             torch_dtype='auto',
             #device_map='auto',
-        ).to('cpu')  #.to(self._device)
+        ).to(device)  #.to(self._device)
         self.gpt2.eval()
 
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(

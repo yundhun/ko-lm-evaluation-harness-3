@@ -71,6 +71,7 @@ from . import pawsx
 from . import xnli
 from . import mgsm
 from . import ko_arc
+from . import ko_hellaswag
 
 ########################################
 # Translation tasks
@@ -151,6 +152,7 @@ TASK_REGISTRY = {
     # "quac": quac.QuAC, # not implemented yet
     "logiqa": logiqa.LogiQA,
     "hellaswag": hellaswag.HellaSwag,
+    "ko_hellaswag": ko_hellaswag.HellaSwag,
     "swag": swag.SWAG,
     "openbookqa": openbookqa.OpenBookQA,
     "squad2": squad.SQuAD2,
